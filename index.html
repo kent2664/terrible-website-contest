@@ -36,8 +36,9 @@
             </div>
         </div>
     </header>
-    <main>
-        <div class="bg-[url('assets/imgs/DSC01277.jpg')] w-full h-screen bg-cover bg-center relative overflow-y-scroll scrollbar-hide">
+    <main class="relative">
+        <div
+            class="bg-[url('assets/imgs/DSC01277.jpg')] w-full h-screen bg-cover bg-center relative overflow-y-scroll scrollbar-hide">
             <div class="h-screen">
             </div>
             <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0">
@@ -45,8 +46,11 @@
             <img src="assets/imgs/DSC03604-big.jpg" alt="background" class="w-full h-full z-0">
             <img src="assets/imgs/DSC07021-big.jpg" alt="background" class="w-full h-full z-0">
             <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0">
-            <div class="fixed bg-gray-200 top-[37rem] left-0 h-32 w-full text-center text-blue z-10 flex flex-row justify-center gap-4">
+            <img src="assets/imgs/DSC02908-big.jpg" alt="background" class="w-full h-full z-0">
+            <img src="assets/imgs/DSC03833-big.jpg" alt="background" class="w-full h-full z-0">
+            <img src="assets/imgs/DSC09282-big.jpg" alt="background" class="w-full h-full z-0">
+            <div
+                class="fixed bg-gray-200 top-[37rem] left-0 h-32 w-full text-center text-blue z-10 flex flex-row justify-center gap-4">
                 <img src="assets/imgs/DSC01615.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
                 <img src="assets/imgs/DSC01634.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
                 <img src="assets/imgs/DSC02018.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
@@ -54,13 +58,47 @@
                 <img src="assets/imgs/DSC02715.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
                 <img src="assets/imgs/DSC01277.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
                 <img src="assets/imgs/DSC02849.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
+
             </div>
+            <div id="bouncing-ad" class="w-48 h-32 p-4 bg-red-600 text-white text-center font-bold shadow-xl rounded-lg cursor-pointer fixed top-0 left-0
+        transition-none z-1000 hidden
+    ">
+                <p class="text-lg">Click to Close!</p>
+                <p class="text-sm mt-1">Sponsor Message</p>
+            </div>
+        </div>
+        <div class="w-full h-screen">
+
         </div>
     </main>
     <footer class="bg-white h-60 flex items-center justify-center">
         <p class="text-center text-sm text-gray-500">© 2024 Terrible Website Contest. All rights reserved.</p>
 
     </footer>
+    <div id="cookie-popup"
+        class="fixed inset-x-0 h-60 top-0 z-50 p-4 bg-gray-800 text-white transform translate-y-full transition-transform duration-700 ease-out opacity-0">
+        <div
+            class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+
+            <p class="text-4xl">
+                We use cookies on this site to analyze usage and improve our services. Please agree to the use of
+                cookies to continue.
+                <a href="#" id="accept" class="text-sm text-white hover:text-blue-200 ml-1">accept Here</a>
+            </p>
+
+            <div class="flex space-x-3 flex-shrink-0">
+                <button id="continue"
+                    class="px-10 py-6 text-2xl font-semibold text-gray-800 bg-yellow-400 rounded-lg hover:bg-yellow-500 hover:shadow-2xl hover:shadow-yellow-300/50 hover:scale-150 shadow-md">
+                    continue
+                </button>
+                <button id="decline-cookies"
+                    class="px-10 py-6 text-2xl font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition duration-150">
+                    decline
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

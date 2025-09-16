@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar Trick</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* 1. アニメーションの定義 */
+        @keyframes fastThenSlowLoad {
+
+            /* 0%から90%までは高速で進行 (全アニメーション時間の10%で到達) */
+            0% {
+                width: 0%;
+            }
+
+            10% {
+                width: 92%;
+            }
+
+            25% {
+                width: 94%
+            }
+
+            30% {
+                width: 95%
+            }
+
+            /* 90%から100%までは低速で進行 (全アニメーション時間の残り90%を使う) */
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* 2. プログレスバーにアニメーションを適用 */
+        .progress-bar-trick {
+            /* 合計20秒かけてアニメーションを実行 */
+            animation: fastThenSlowLoad 20s ease-out forwards;
+            /* forwards: アニメーション完了後、最後の状態（100%）を維持 */
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center flex-col p-4 relative">
+
+    <div class="w-full max-w-lg bg-gray-300 rounded-full h-4 overflow-hidden shadow-inner">
+        <div id="progress-bar" class="progress-bar-trick h-full bg-blue-600 rounded-full" style="width: 0%;">
+        </div>
+    </div>
+
+    <p id="percentage-display" class="mt-4 text-xl font-bold text-gray-700">0%</p>
+
+    <div id="rainbowPage" class="opacity-10 absolute top-0 w-full h-screen video-background">
+        <video playsinline autoplay muted loop>
+            <source src="../assets/imgs/218377_small.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="rainbowText" class=" hidden relative z-10 text-white p-10 min-h-screen flex items-center justify-center">
+        <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg">
+            <h1 class="text-5xl font-bold">Welcome to the under ground</h1>
+            <p class="mt-4 text-xl">test</p>
+        </div>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progress-bar');
+        const percentageDisplay = document.getElementById('percentage-display');
+        const rainbowpage = document.getElementById('rainbowPage');
+        const rainbowtext = document.getElementById('rainbowText');
+
+        // アニメーションが完了するまでの時間 (CSSで設定した10秒)
+        const duration = 20000;
+        const startTime = Date.now();
+
+        function updatePercentage() {
+            const elapsedTime = Date.now() - startTime;
+
+            // アニメーションの進捗率を計算 (0から1)
+            const progressRatio = Math.min(1, elapsedTime / duration);
+
+            // CSSのキーフレームに合わせたカスタム進捗計算
+            let visualProgress;
+
+            if (progressRatio <= 0.1) {
+                // 最初の10%の時間で、0%から90%まで進む
+                visualProgress = (progressRatio / 0.1) * 90;
+            } else {
+                // 残りの90%の時間で、90%から100%まで進む
+                visualProgress = 90 + ((progressRatio - 0.1) / 0.9) * 10;
+            }
+
+            // パーセントの表示を更新
+            percentageDisplay.textContent = Math.floor(visualProgress) + '%';
+
+            if (visualProgress < 100) {
+                requestAnimationFrame(updatePercentage);
+            } else {
+                percentageDisplay.textContent = '100% - Ready!';
+
+                setTimeout(function () {
+                    // 1. 指定時間後に実行したい処理をここに書く
+                    rainbowpage.classList.remove('opacity-10');
+                    rainbowtext.classList.remove('hidden');
+                    rainbowtext.classList.add('block');
+                    rainbowpage.classList.add('opacity-100');
+
+                }, 3000);
+
+            }
+        }
+
+        // アニメーション開始
+        requestAnimationFrame(updatePercentage);
+    </script>
+</body>
+
+</html>
