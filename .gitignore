@@ -64,7 +64,7 @@ Thumbs.db
 *.war
 
 # large media files
-*.mp4
+.mp4
 *.tiff
 *.avi
 *.flv
