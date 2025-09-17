@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let posY = 0;
     let speedX = 3;  // Horizontal speed
     let speedY = 3.5; // Vertical speed (slightly different for an interesting bounce)
-    
+
     // Frame update function
     function moveAd() {
         // 1. Get current window and ad dimensions
@@ -99,14 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    // ユーザーがページを離れようとしたときに実行
+    // Warn user when they try to leave the page
     window.onbeforeunload = function () {
-        // ここに表示したいメッセージを入力する（ブラウザによって表示されない場合がある）
-        return "It's not over yet!";
+        return "";
     };
 
     answer.addEventListener('click', () => {
         princessImage.classList.remove('hidden');
         princessImage.classList.add('flex');
+    });
+
+    document.addEventListener('myCustomAction', (event) => {
+        console.log("カスタムイベントを感知しました！");
+        console.log("情報:", event.detail.message);
+        alert("操作が完了しました！");
+
     });
 });

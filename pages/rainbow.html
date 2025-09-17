@@ -78,8 +78,7 @@
         <div
             class="w-full mt-50 text-center text-purple-500 bg-black bg-opacity-50 p-4 rounded-lg flex flex-row justify-center gap-10">
             <ul>
-                <li class="inline-block mx-4"><a id="link-1" href="#"
-                        class="underline hover:text-yellow-300">①</a></li>
+                <li class="inline-block mx-4"><a id="link-1" href="#" class="underline hover:text-yellow-300">①</a></li>
                 <li class="inline-block mx-4"><a id="link-2" href="javascript:void(0);"
                         class="underline hover:text-yellow-300">②</a></li>
                 <li class="inline-block mx-4"><a id="link-3" href="#" class="underline hover:text-yellow-300">③</a></li>
@@ -206,7 +205,18 @@
             link6.addEventListener('click', function (event) {
                 event.preventDefault();
 
+                                const myCustomEvent = new CustomEvent('myCustomAction', {
+                    detail: {
+                        message: 'findprincess clicked',
+                        origin: 'button-six'
+                    },
+                    bubbles: true
+                });
+                console.log("カスタムイベントを感知しました！");
+                // 2. イベントを発火（通知）
+                document.dispatchEvent(myCustomEvent); // document (ページ全体) を通じて通知
                 window.open('./leadtoprincess.html', '_blank');
+
             });
 
             link7.addEventListener('click', function (event) {
