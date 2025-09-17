@@ -205,16 +205,18 @@
             link6.addEventListener('click', function (event) {
                 event.preventDefault();
 
-                                const myCustomEvent = new CustomEvent('myCustomAction', {
-                    detail: {
-                        message: 'findprincess clicked',
-                        origin: 'button-six'
-                    },
-                    bubbles: true
-                });
-                console.log("カスタムイベントを感知しました！");
-                // 2. イベントを発火（通知）
-                document.dispatchEvent(myCustomEvent); // document (ページ全体) を通じて通知
+                // const myCustomEvent = new CustomEvent('myCustomAction', {
+                //     detail: {
+                //         message: 'findprincess clicked',
+                //         origin: 'button-six'
+                //     },
+                //     bubbles: true
+                // });
+                // console.log("カスタムイベントを感知しました！");
+                // // 2. イベントを発火（通知）
+                // document.dispatchEvent(myCustomEvent); // document (ページ全体) を通じて通知
+
+                window.opener.postMessage('data', '*');
                 window.open('./leadtoprincess.html', '_blank');
 
             });

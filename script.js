@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const ad = document.getElementById('bouncing-ad');
     const answer = document.getElementById('findprincessAnswer');
     const princessImage = document.getElementById('princessImage');
+    const princessXl = document.getElementById('findprincessxl');
+    const princessLg = document.getElementById('findprincesslg');
+    const princessSm = document.getElementById('findprincesssm');
+    const princessAns = document.getElementById('findprincessAnswer');
+    const farSound = document.getElementById('farSound');
+    const normalSound = document.getElementById('normalSound');
+    const nearSound = document.getElementById('nearSound');
+    const veryNearSound = document.getElementById('veryNearSound');
 
     // Initial position and speed (in pixels per frame)
     let posX = 0;
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // localStorage.setItem('cookies-accepted', 'true');
 
         popup.classList.remove('translate-y-0', 'opacity-100');
-        popup.classList.add('translate-y-full', 'opacity-0');
+        popup.classList.add('translate-y-full', 'opacity-0', 'hidden');
 
         window.open('./pages/thankyouforaccepting.html', '_blank');
 
@@ -109,10 +117,72 @@ document.addEventListener('DOMContentLoaded', () => {
         princessImage.classList.add('flex');
     });
 
-    document.addEventListener('myCustomAction', (event) => {
-        console.log("カスタムイベントを感知しました！");
-        console.log("情報:", event.detail.message);
-        alert("操作が完了しました！");
+    window.addEventListener('message', (event) => {
+        // ローカルファイル環境では event.origin は 'file://' または 'null' の場合が多い
+        if (event.origin === 'file://' || event.origin === 'null') {
+            // 信頼できるローカルメッセージの場合のみ処理
+            console.log("カスタムイベントを検知しました！");
 
+            princessXl.addEventListener('mouseenter', () => {
+                play(farSound);
+            });
+            princessXl.addEventListener('mouseleave', () => {
+                stop(farSound);
+            });
+            princessLg.addEventListener('mouseenter', () => {
+                play(nearSound, 1.4);
+            });
+            princessLg.addEventListener('mouseleave', () => {
+                stop(nearSound, 1.4);
+            });
+            princessSm.addEventListener('mouseenter', () => {
+                play(normalSound, 1.8);
+            });
+            princessSm.addEventListener('mouseleave', () => {
+                stop(normalSound, 1.8);
+            });
+            princessAns.addEventListener('mouseenter', () => {
+                play(veryNearSound, 3);
+            });
+            princessAns.addEventListener('mouseleave', () => {
+                stop(veryNearSound, 3);
+            });
+
+        } else {
+            console.log("reject", event.detail.message);
+            return;
+        }
     });
+
+    function play(element, speed = 1) {
+        // 現在の再生位置をリセット
+        element.currentTime = 0;
+
+        // ループ再生を有効にする
+        element.loop = true;
+
+        element.playbackRate = speed;
+
+        // 再生を開始
+        const playPromise = element.play();
+
+        // play()はPromiseを返すため、エラー（再生ブロックなど）を捕捉できます
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.error("サウンドの再生に失敗しました:", error);
+                // 💡 再生に失敗した場合（ミュートやブロック時）、ユーザーにクリックを促すなどの対処が必要
+            });
+        }
+    }
+
+    function stop(element) {
+        // 再生を停止
+        element.pause();
+
+        // ループを無効に戻す
+        element.loop = false;
+
+        // （オプション）再生位置を先頭に戻す
+        element.currentTime = 0;
+    }
 });
