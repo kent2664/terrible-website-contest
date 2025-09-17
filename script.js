@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const declineButton = document.getElementById('decline-cookies');
     const accept = document.getElementById('accept');
     const ad = document.getElementById('bouncing-ad');
+    const answer = document.getElementById('findprincessAnswer');
+    const princessImage = document.getElementById('princessImage');
 
     // Initial position and speed (in pixels per frame)
     let posX = 0;
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // popup.classList.remove('translate-y-0', 'opacity-100');
         // popup.classList.add('translate-y-full', 'opacity-0');
 
-        window.open('./pages/whereareyougoing.html', '_blank');
+        window.open('./pages/whatareyoucontinuing.html', '_blank');
 
     });
 
@@ -102,4 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // ここに表示したいメッセージを入力する（ブラウザによって表示されない場合がある）
         return "It's not over yet!";
     };
+
+    answer.addEventListener('click', () => {
+        princessImage.classList.remove('hidden');
+        princessImage.classList.add('flex');
+    });
 });

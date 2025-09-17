@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Bar Trick</title>
+    <title>Welcome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* 1. アニメーションの定義 */
         @keyframes fastThenSlowLoad {
 
-            /* 0%から90%までは高速で進行 (全アニメーション時間の10%で到達) */
             0% {
                 width: 0%;
             }
@@ -66,63 +65,162 @@
         </video>
     </div>
 
-    <div id="rainbowText" class=" hidden relative z-10 text-white p-10 min-h-screen flex items-center justify-center">
+    <div id="rainbowText"
+        class=" hidden relative z-10 text-white p-10 min-h-screen flex flex-col items-center justify-center">
         <div class="text-center bg-black bg-opacity-50 p-6 rounded-lg">
             <h1 class="text-5xl font-bold">Welcome to the under ground</h1>
-            <p class="mt-4 text-xl">test</p>
+            <p class="mt-4 text-xl">Which way will you go?</p>
+            <div style="text-align: center; padding: 20px; border: 1px solid #ccc;">
+                <p>You are visitor number</p>
+                <p id="visit-count" style="font-size: 2em; font-weight: bold;">0</p>
+            </div>
         </div>
-    </div>
+        <div
+            class="w-full mt-50 text-center text-purple-500 bg-black bg-opacity-50 p-4 rounded-lg flex flex-row justify-center gap-10">
+            <ul>
+                <li class="inline-block mx-4"><a id="link-1" href="#"
+                        class="underline hover:text-yellow-300">①</a></li>
+                <li class="inline-block mx-4"><a id="link-2" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">②</a></li>
+                <li class="inline-block mx-4"><a id="link-3" href="#" class="underline hover:text-yellow-300">③</a></li>
+                <li class="inline-block mx-4"><a id="link-4" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">④</a></li>
+                <li class="inline-block mx-4"><a id="link-5" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">⑤</a></li>
+                <li class="inline-block mx-4"><a id="link-6" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">⑥</a></li>
+                <li class="inline-block mx-4"><a id="link-7" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">⑦</a></li>
+                <li class="inline-block mx-4"><a id="link-8" href="javascript:void(0);"
+                        class="underline hover:text-yellow-300">⑧</a></li>
+            </ul>
+        </div>
 
-    <script>
-        const progressBar = document.getElementById('progress-bar');
-        const percentageDisplay = document.getElementById('percentage-display');
-        const rainbowpage = document.getElementById('rainbowPage');
-        const rainbowtext = document.getElementById('rainbowText');
+        <script>
+            const progressBar = document.getElementById('progress-bar');
+            const percentageDisplay = document.getElementById('percentage-display');
+            const rainbowpage = document.getElementById('rainbowPage');
+            const rainbowtext = document.getElementById('rainbowText');
+            const link1 = document.getElementById('link-1');
+            const link2 = document.getElementById('link-2');
+            const link3 = document.getElementById('link-3');
+            const link4 = document.getElementById('link-4');
+            const link5 = document.getElementById('link-5');
+            const link6 = document.getElementById('link-6');
+            const link7 = document.getElementById('link-7');
+            const link8 = document.getElementById('link-8');
 
-        // アニメーションが完了するまでの時間 (CSSで設定した10秒)
-        const duration = 20000;
-        const startTime = Date.now();
+            // アニメーションが完了するまでの時間 (CSSで設定した10秒)
+            const duration = 20000;
+            const startTime = Date.now();
 
-        function updatePercentage() {
-            const elapsedTime = Date.now() - startTime;
+            function updatePercentage() {
+                const elapsedTime = Date.now() - startTime;
 
-            // アニメーションの進捗率を計算 (0から1)
-            const progressRatio = Math.min(1, elapsedTime / duration);
+                // アニメーションの進捗率を計算 (0から1)
+                const progressRatio = Math.min(1, elapsedTime / duration);
 
-            // CSSのキーフレームに合わせたカスタム進捗計算
-            let visualProgress;
+                // CSSのキーフレームに合わせたカスタム進捗計算
+                let visualProgress;
 
-            if (progressRatio <= 0.1) {
-                // 最初の10%の時間で、0%から90%まで進む
-                visualProgress = (progressRatio / 0.1) * 90;
-            } else {
-                // 残りの90%の時間で、90%から100%まで進む
-                visualProgress = 90 + ((progressRatio - 0.1) / 0.9) * 10;
+                if (progressRatio <= 0.1) {
+                    // 最初の10%の時間で、0%から90%まで進む
+                    visualProgress = (progressRatio / 0.1) * 90;
+                } else {
+                    // 残りの90%の時間で、90%から100%まで進む
+                    visualProgress = 90 + ((progressRatio - 0.1) / 0.9) * 10;
+                }
+
+                // パーセントの表示を更新
+                percentageDisplay.textContent = Math.floor(visualProgress) + '%';
+
+                if (visualProgress < 100) {
+                    requestAnimationFrame(updatePercentage);
+                } else {
+                    percentageDisplay.textContent = '100% - Ready!';
+
+                    setTimeout(function () {
+                        // 1. 指定時間後に実行したい処理をここに書く
+                        rainbowpage.classList.remove('opacity-10');
+                        rainbowtext.classList.remove('hidden');
+                        rainbowtext.classList.add('block');
+                        rainbowpage.classList.add('opacity-100');
+
+                    }, 3000);
+
+                }
             }
 
-            // パーセントの表示を更新
-            percentageDisplay.textContent = Math.floor(visualProgress) + '%';
+            // アニメーション開始
+            requestAnimationFrame(updatePercentage);
 
-            if (visualProgress < 100) {
-                requestAnimationFrame(updatePercentage);
-            } else {
-                percentageDisplay.textContent = '100% - Ready!';
+            document.addEventListener('DOMContentLoaded', () => {
+                // 1. Local Storageから現在の訪問回数を取得する
+                // 'page_visits'というキーで保存された値を取得。値がなければ 0 とする。
+                let count = parseInt(localStorage.getItem('page_visits')) || 0;
 
-                setTimeout(function () {
-                    // 1. 指定時間後に実行したい処理をここに書く
-                    rainbowpage.classList.remove('opacity-10');
-                    rainbowtext.classList.remove('hidden');
-                    rainbowtext.classList.add('block');
-                    rainbowpage.classList.add('opacity-100');
+                // 2. カウンターを1増やす
+                count = count + 1;
 
-                }, 3000);
+                // 3. 新しい訪問回数をLocal Storageに保存する
+                localStorage.setItem('page_visits', count);
 
-            }
-        }
+                // 4. HTMLに表示する
+                const countElement = document.getElementById('visit-count');
+                if (countElement) {
+                    // 3桁区切り（カンマ）を入れて表示
+                    countElement.textContent = count.toLocaleString();
+                }
+            });
 
-        // アニメーション開始
-        requestAnimationFrame(updatePercentage);
-    </script>
+            link1.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link2.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link3.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link4.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link5.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link6.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./leadtoprincess.html', '_blank');
+            });
+
+            link7.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+
+            link8.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                window.open('./whereareyougoing.html', '_blank');
+            });
+        </script>
 </body>
 
 </html>

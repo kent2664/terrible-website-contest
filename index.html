@@ -10,26 +10,26 @@
 </head>
 
 <body>
-    <header class="relative z-40 h-24 bg-white">
+    <header class="relative z-40 h-12 bg-white">
         <div class="mx-auto max-w-full
                     px-8
                     md:px-8
                     lg:px-8
                     xl:px-8
-                    py-8
+                    py-2
                     max-w-screen-md
                     md:max-w-[864px]
                     lg:max-w-[1140px]
                     xl:max-w-[1440px]
                     ">
             <div class="flex items-center gap-6 relative">
-                <nav class="md:flex items-center gap-24 text-md font-light">
+                <nav class="md:flex items-center gap-4 text-md font-light">
                     <a href="index.html" class="hover:text-pink-500">home</a>
                     <a href="#about" class="hover:text-pink-500">about</a>
                     <a href="#contact" class="hover:text-pink-500">contact</a>
                 </nav>
                 <div class="ml-auto flex items-center gap-5">
-                    <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                         <path d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </div>
@@ -67,8 +67,17 @@
                 <p class="text-sm mt-1">Sponsor Message</p>
             </div>
         </div>
-        <div class="w-full h-screen">
-
+        <!-- has to be hidden -->
+        <div class="w-full h-screen relative">
+            <div id="findprincessxl" class="absolute w-full h-[50rem] top-28 bg-black rounded-full opacity-70">
+            </div>
+            <div id="findprincesslg" class="absolute w-[35rem] h-[35rem] top-[36rem] left-[40rem] bg-blue-500 rounded-full opacity-70 z-10">
+            </div>
+            <div id="findprincesssm" class="absolute w-[10rem] h-[10rem] top-[50rem] left-[55rem] bg-red-500 rounded-full opacity-70 z-10">
+            </div>
+             <div id="findprincessAnswer" class="absolute relative w-[1rem] h-[1rem] top-[55rem] left-[60rem] bg-pink-500 rounded-full opacity-70 z-10">
+            </div>
+            <img id="princessImage" src="assets/imgs/princess-157393_1280.png" alt="princess" class="hidden absolute w-[20rem] top-[50rem] left-[50rem] cursor-pointer z-1000">
         </div>
     </main>
     <footer class="bg-white h-60 flex items-center justify-center">
