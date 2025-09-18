@@ -8,3 +8,23 @@
 .scrollbar-hide {
   scrollbar-width: none;
 }
+
+@layer utilities {
+    /* 1. キラキラと点滅するキーフレームを定義 */
+    @keyframes sparkle-text {
+        0%, 100% { 
+            color: currentColor; /* 通常の色 */
+            text-shadow: none;
+        }
+        50% {
+            color: #ffcc00; /* キラッと光る色 */
+            text-shadow: 0 0 8px rgba(255, 204, 0, 0.7), 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+    }
+
+    /* 2. アニメーションを適用するカスタムクラスを定義 */
+    /* これをHTMLで直接使用します */
+    .animate-sparkle {
+        animation: sparkle-text 2s ease-in-out infinite;
+    }
+}

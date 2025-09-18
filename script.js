@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const normalSound = document.getElementById('normalSound');
     const nearSound = document.getElementById('nearSound');
     const veryNearSound = document.getElementById('veryNearSound');
+    const container = document.getElementById('animation-container');
 
     // Initial position and speed (in pixels per frame)
     let posX = 0;
@@ -152,6 +153,90 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("reject", event.detail.message);
             return;
         }
+    });
+
+    princessAns.addEventListener('click', () => {
+        const elements = container.querySelectorAll('.fallen-element');
+        const congratulations = document.getElementById('congratulations');
+
+        elements.forEach((element, index) => {
+            // ----------------------------------------------------
+            // 1. 各要素を absolute にして、現在の位置を固定
+            // ----------------------------------------------------
+            const rect = element.getBoundingClientRect();
+
+            // 💡 画面下端までの移動量を計算
+            // window.innerHeight = 画面の最下部のY座標
+            // rect.top = 要素の上辺のY座標
+            // 移動量 = 画面下部 - 要素の現在位置 + 要素自身の高さ（画面下端に合わせるため）
+            const deltaY = window.innerHeight - rect.top;
+
+            // Tailwindの任意の値 ([...]) を使ってインラインCSSを設定
+            element.classList.add(
+                'absolute',
+                'z-[1000]', // 手前に出す
+                'transition-all', // 全てのプロパティにトランジションを適用
+                'ease-in',     // 加速しながら落ちる
+                `duration-[1500ms]`,
+                `top-[${rect.top}px]`,
+                `left-[${rect.left}px]`
+            );
+
+            // 元の位置指定クラスは削除し、マージンもリセット
+            element.classList.remove('relative', 'flex', 'm-4', 'gap-4', 'w-full', 'h-full');
+            element.style.margin = '0';
+
+            // ----------------------------------------------------
+            // 2. アニメーションを開始
+            // ----------------------------------------------------
+            const delay = index * 100; // 0.1s ずつ遅延
+            element.style.transitionDelay = `${delay}ms`;
+
+            // 画面下端までの移動と回転を適用
+            element.classList.add(
+                `translate-y-[${deltaY}px]`, // 計算された移動量
+                'rotate-[360deg]' // 落下中に一回転
+            );
+
+            // ----------------------------------------------------
+            // 3. アニメーション完了後に静止させる
+            // ----------------------------------------------------
+            setTimeout(() => {
+                // 1. トランジションを一旦解除
+                element.style.transition = 'none';
+
+                // 2. absolute を解除し、fixed で下部に固定
+                element.classList.remove(
+                    'absolute',
+                    `top-[${rect.top}px]`,
+                    `left-[${rect.left}px]`,
+                    `translate-y-[${deltaY}px]`, // transform解除
+                    'rotate-[360deg]'
+                );
+
+                // 3. 画面下部に集めるための固定クラスを追加
+                // 画面中央に集め、bottom: 0 で固定
+                element.classList.add('fixed', 'bottom-0', 'left-1/2', '-translate-x-1/2', 'z-[20]');
+
+                // (オプション) 固定後にわずかに上へアニメーションさせる
+                // すぐに transform をリセットすることで、要素が画面下端に移動し、
+                // その後 translate-y-[-1rem] が効いて下からフワッと浮かび上がります
+                setTimeout(() => {
+                    element.style.transition = 'transform 0.3s ease-out';
+                    element.classList.add('translate-y-[-1rem]'); // 画面下から少し浮かせる
+                }, 50);
+
+                congratulations.classList.remove('hidden');
+                congratulations.classList.add('absolute', 'top-0', 'left-[30rem]', 'z-50');
+            }, 1500 + delay);
+        });
+
+        // 全要素の処理完了後にボタンを有効化 (最長のアニメーション時間を基準)
+        setTimeout(() => {
+            destroyBtn.disabled = false;
+            destroyBtn.textContent = '落下アニメーションを再開';
+            destroyBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }, 1500 + boxes.length * 100);
     });
 
     function play(element, speed = 1) {

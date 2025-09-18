@@ -36,29 +36,28 @@
             </div>
         </div>
     </header>
-    <main class="relative">
+    <main class="relative" id="animation-container">
         <div
-            class="bg-[url('assets/imgs/DSC01277.jpg')] w-full h-screen bg-cover bg-center relative overflow-y-scroll scrollbar-hide">
-            <div class="h-screen">
+            class="bg-[url('assets/imgs/DSC01277.jpg')] w-full h-screen bg-cover bg-center relative overflow-y-scroll scrollbar-hide fallen-element">
+            <div class="h-screen fallen-element">
             </div>
-            <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC00022-2-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC03604-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC07021-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC02908-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC03833-big.jpg" alt="background" class="w-full h-full z-0">
-            <img src="assets/imgs/DSC09282-big.jpg" alt="background" class="w-full h-full z-0">
+            <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC00022-2-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC03604-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC07021-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC00533-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC02908-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC03833-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
+            <img src="assets/imgs/DSC09282-big.jpg" alt="background" class="w-full h-full z-0 fallen-element">
             <div
-                class="fixed bg-gray-200/80 top-[37rem] left-0 h-32 w-full text-center text-blue z-10 flex flex-row justify-center gap-4">
-                <img src="assets/imgs/DSC01615.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC01634.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC02018.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC02647.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC02715.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC01277.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-                <img src="assets/imgs/DSC02849.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md">
-
+                class="fixed bg-gray-200/80 top-[37rem] left-0 h-32 w-full text-center text-blue z-10 flex flex-row justify-center gap-4 fallen-element">
+                <img src="assets/imgs/DSC01615.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC01634.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC02018.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC02647.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC02715.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC01277.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
+                <img src="assets/imgs/DSC02849.jpg" alt="pictures" class="h-24 w-36 mt-4 rounded-md fallen-element">
             </div>
             <div id="bouncing-ad" class="w-48 h-32 p-4 bg-red-600 text-white text-center font-bold shadow-xl rounded-lg cursor-pointer fixed top-0 left-0
         transition-none z-1000 hidden
@@ -69,15 +68,20 @@
         </div>
         <!-- has to be hidden -->
         <div class="w-full h-screen relative">
-            <div id="findprincessxl" class="absolute w-full h-[50rem] top-28 bg-black rounded-full opacity-70">
+            <div id="congratulations" class="h-1 absolute top-0 left-[30rem] hidden">
+                <h1 class="text-6xl text-center mt-20 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-sparkle">
+                    Congratulations!
+                </h1>
             </div>
-            <div id="findprincesslg" class="absolute w-[35rem] h-[35rem] top-[36rem] left-[40rem] bg-blue-500 rounded-full opacity-70 z-10">
+            <div id="findprincessxl" class="absolute w-full h-[50rem] top-28  rounded-full opacity-70">
             </div>
-            <div id="findprincesssm" class="absolute w-[10rem] h-[10rem] top-[50rem] left-[55rem] bg-red-500 rounded-full opacity-70 z-10">
+            <div id="findprincesslg" class="absolute w-[35rem] h-[35rem] top-[36rem] left-[40rem]  rounded-full opacity-70 z-10">
             </div>
-             <div id="findprincessAnswer" class="absolute relative w-[1rem] h-[1rem] top-[55rem] left-[60rem] bg-pink-500 rounded-full opacity-70 z-10">
+            <div id="findprincesssm" class="absolute w-[15rem] h-[15rem] top-[50rem] left-[55rem]  rounded-full opacity-70 z-10">
             </div>
-            <img id="princessImage" src="assets/imgs/princess-157393_1280.png" alt="princess" class="hidden absolute w-[20rem] top-[50rem] left-[50rem] cursor-pointer z-1000">
+             <div id="findprincessAnswer" class="absolute relative w-[1rem] h-[1rem] top-[55rem] left-[60rem]  rounded-full opacity-70 z-10">
+            </div>
+            <img id="princessImage" src="assets/imgs/princess-157393_1280.png" alt="princess" class="hidden absolute w-[20rem] top-[50rem] left-[50rem] cursor-pointer z-1000 fallen-element">
         </div>
         <audio id="farSound" src="./assets/sounds/princess.wav" preload="auto"></audio>
         <audio id="normalSound" src="./assets/sounds/princess_01.wav" preload="auto"></audio>
